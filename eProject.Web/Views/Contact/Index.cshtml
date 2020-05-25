@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Contact";
+}
+
+<!DOCTYPE html>
+<!-- template from http://getbootstrap.com/getting-started -->
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+
+    <style type="text/css">
+
+        #map_canvas {
+            height: 400px;
+            width: 400px;
+        }
+    </style>
+</head>
+
+<div class="wrapper d-flex justify-content-center">
+    <script>
+        var cities = @Html.Raw(Json.Encode(Model));
+
+    $(document).ready(function() {
+        // execute
+        (function() {
+            // map options
+            var options = {
+                zoom: 10,
+                center: new google.maps.LatLng(47.003670, 28.907089),
+                mapTypeId: google.maps.MapTypeId.TERRAIN,
+                mapTypeControl: false
+            };
+
+            // init map
+            var map = new google.maps.Map(document.getElementById('map_canvas'), options);
+
+
+            for (var i = 0; i < cities.length; i++) {
+                // init markers
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(cities[i].Lat, cities[i].Lng),
+                    map: map,
+                    title: cities[i].Title
+                });
+
+                // process multiple info windows
+                (function(marker, i) {
+                    // add click event
+                    google.maps.event.addListener(marker, 'click', function() {
+                        infowindow = new google.maps.InfoWindow({
+                            content: cities[i].Title
+                        });
+                        infowindow.open(map, marker);
+                    });
+                })(marker, i);
+            }
+        })();
+    });
+
+    </script>
+
+    <div id="map_canvas"></div>
+    <div>
+        <a><h3>Numar de contact: +37368238229</h3></a>
+        <a><h3>Numar de contact: +37322445566</h3></a>
+        <a><h3>Adresa: Gherghe Asachi 22/3</h3></a>
+    </div>
+</div>
+   

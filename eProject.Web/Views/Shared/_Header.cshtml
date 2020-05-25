@@ -1,0 +1,147 @@
+﻿@model eProject.Web.Models.UserData
+
+<!-- Navigation Bar-->
+
+
+        <!-- Topbar Start -->
+<div class="navbar-custom">
+    <div class="container-fluid">
+        <ul class="list-unstyled topnav-menu float-right mb-0">
+            <li class="dropdown notification-list">
+                <!-- Mobile menu toggle-->
+                <a class="navbar-toggle nav-link">
+                    <div class="lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </a>
+                <!-- End mobile menu toggle-->
+            </li>
+
+            <li class="dropdown d-none d-lg-block">
+                <a class="nav-link dropdown-toggle mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <img src="~/images/flags/us.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">English <i class="mdi mdi-chevron-down"></i> </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <img src="~/images/flags/germany.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">German</span>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <img src="~/images/flags/italy.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Italian</span>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <img src="~/images/flags/spain.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Spanish</span>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <img src="~/images/flags/russia.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Russian</span>
+                    </a>
+
+                </div>
+            </li>
+
+            @if (Model == null)
+            {
+                <li>
+                    <a class="nav-link nav-user mr-0 waves-effect waves-light" href="@Url.Action("Index", "Login")" role="button" aria-haspopup="false" aria-expanded="false">
+                        <span class="pro-user-name ml-1">
+                            Login
+                        </span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a class="nav-link nav-user mr-0 waves-effect waves-light" href="@Url.Action("Index", "Register")" role="button" aria-haspopup="false" aria-expanded="false">
+                        <span class="pro-user-name ml-1">
+                            Register
+                        </span>
+                    </a>
+                </li>
+
+    
+            }
+            else
+            {
+                <li class="dropdown notification-list">
+                    <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <span class="pro-user-name ml-1">
+                            @Html.DisplayFor(u => u.Username)<i class="mdi mdi-chevron-down"></i>
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                        <!-- item-->
+                        <div class="dropdown-header noti-title">
+                            <h6 class="text-overflow m-0">Welcome !</h6>
+                        </div>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="remixicon-account-circle-line"></i>
+                            <span>My Account</span>
+                        </a>
+
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="remixicon-settings-3-line"></i>
+                            <span>Settings</span>
+                        </a>
+                        @if(Model.Level == eProject.Domain.Enums.URole.Admin)
+                        {
+                            <a href="@Url.Action("Index", "Admin")" class="dropdown-item notify-item">
+                                <i class="remixicon-account-circle-line"></i>
+                                <span>Admin Panel</span>
+                            </a>
+                        }
+                        
+                        <div class="dropdown-divider"></div>
+
+                        <!-- item-->
+                        <a class="dropdown-item notify-item" href="javascript:;" onclick="document.forms[0].submit();">
+                            @using (Html.BeginForm("Logout", "Login", FormMethod.Post))
+                            {
+                                <i class="remixicon-logout-box-line" ></i>
+                                <span>Logout</span>
+                            }
+                        </a>
+                    </div>
+                </li>
+            }
+        </ul>
+
+        <!-- Topbar Start -->
+
+        <div class="logo-box">
+            <a href="@Url.Action("Index", "Home")" class="logo text-center">
+                <span class="logo-lg">
+                    <img src="~/images/logo-light.png" alt="" height="20">
+                    <!-- <span class="logo-lg-text-light">Xeria</span> -->
+                </span>
+                <span class="logo-sm">
+                    <!-- <span class="logo-sm-text-dark">X</span> -->
+                    <img src="~/images/logo-sm.png" alt="" height="24">
+                </span>
+            </a>
+        </div>
+
+        <!-- end Topbar -->
+        <!-- LOGO -->
+    </div>
+</div>
+
+
+            <!-- end Topbar -->
+
+<!-- End Navigation Bar-->
+<!-- ============================================================== -->
+<!-- /Right-bar -->
+<!-- Right bar overlay-->
+<div class="rightbar-overlay"></div>

@@ -1,0 +1,73 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Products";
+}
+@model eProject.Web.Models.UserData
+
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item">
+                                <a href="javascript: void(0);">Minton</a>
+                            </li>
+                            <li class="breadcrumb-item active">Products</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Products</h4>
+                </div>
+            </div>
+        </div>
+
+        @if (Model == null)
+        {
+            <div class="d-flex justify-content-center">
+                <div class="card-box ribbon-box">
+                    <div class="ribbon ribbon-purple float-left"><i class="mdi mdi-access-point mr-1"></i>Warning!</div>
+                    <h5 class="text-purple float-right mt-0"></h5>
+                    <div class="ribbon-content">
+                        <p class="mb-0">
+                            You are not logged in to website. To view the content of this page, please
+                            <a class="waves-light" href="@Url.Action("Index", "Login")" role="button">
+                                <span>
+                                    Login
+                                </span>
+                            </a> or
+                            <a class="waves-light" href="@Url.Action("Index", "Register")" role="button">
+                                <span>
+                                    Register
+                                </span>
+                            </a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row filterable-content">
+                @for (int i = 0; i < Model.NameList.Count; i++)
+                {
+                <div class="col-sm-6 col-xl-3 filter-item all web illustrator">
+                    <div class="gal-box">
+                        <a class="image-popup" title="Screenshot-1">
+                            <img src="@Model.imageList[i]" class="card-img-top img-fluid" alt="work-thumbnail">
+                        </a>
+                        <div class="gall-info">
+                            <h4 class="font-16 mt-0">@Model.NameList[i]</h4>
+                            <a href="javascript: void(0);">
+                                <span class="text-muted ml-1">@Model.DescriptionList[i]</span>
+                            </a>
+                            <a href="javascript: void(0);">
+                                <h3><span class="text-muted ml-1">@Model.PriceList[i]$</span></h3>
+                            </a>
+                            <a href="javascript: void(0);" class="gal-like-btn"><i class="mdi mdi-heart-outline text-muted"></i></a>
+                        </div> <!-- gallery info -->
+                    </div> <!-- end gal-box -->
+                </div> <!-- end col -->
+                }
+            </div>
+        }
+</div>

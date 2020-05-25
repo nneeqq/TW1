@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Admin Control Panel";
+}
+
+@model eProject.Web.Models.UserData
+
+    <div class="wrapper">
+        <div class="d-flex justify-content-center">
+            <span class="badge badge-purple">Admin control panel!</span>
+        </div>
+        <hr>
+        <div class="card-box ribbon-box">
+            <div class="ribbon-two ribbon-two-warning"><span>New Product</span></div>
+            <p class="mb-0">>>>In aceasta sectiune puteti adauga un nou produs, pagina este accesibila doar pentru admini si moderatori. Pentru redirectionarae la pagina de adugare a produsului click <a href="@Url.Action("NewProduct", "Product")">aici.</a></p>
+        </div>
+    </div>
+
+

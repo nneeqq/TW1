@@ -1,0 +1,149 @@
+﻿@{
+    Layout = "~/Views/Shared/_Blank_Layout.cshtml";
+    ViewBag.Title = "Register";
+}
+@using System.Web.Optimization
+@model eProject.Web.Models.UserRegisterData
+
+@using (Html.BeginForm("Index", "Register", FormMethod.Post, new { id = "RegisterForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="account-pages mt-2 mb-2">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-5">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <div class="text-center w-75 m-auto">
+                                <a href="@Url.Action("Index", "Register")">
+                                    <span>
+                                        <img src="~/images/logo-light.png" alt="" height="22">
+                                    </span>
+                                </a>
+                                <p class="text-muted mb-4 mt-3">Don't have an account? Create your own account, it takes less than a minute</p>
+                            </div>
+
+                            <form action="/" id="RegisterForm" novalidate>
+                                @Html.ValidationSummary(true)
+                                <div class="form-group mb-0 text-center">
+                                    <label class="succes">@ViewBag.SuccessMessage</label>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Username, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.Username, new
+                                    {
+                                        @class = "form-control",
+                                        id = "login",
+                                        placeholder = "Enter your username",
+                                        title = "Please enter your username"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Username)
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.Email, new
+                                    {
+                                        @class = "form-control",
+                                        id = "email",
+                                        placeholder = "Enter your email",
+                                        title = "Please enter your email address"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Email)
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Password, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.Password, new
+                                    {
+                                        @class = "form-control",
+                                        placeholder = "Enter your password",
+                                        title = "Please enter your password",
+                                        type = "password",
+                                        value = "",
+                                        name = "password",
+                                        id = "password"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Password)
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RepeatPassword, new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.RepeatPassword, new
+                                    {
+                                        @class = "form-control",
+                                        placeholder = "Confirm your password",
+                                        title = "Please enter your password",
+                                        type = "password",
+                                        value = "",
+                                        name = "password",
+                                        id = "repeatepassword"
+                                    })
+                                    @Html.ValidationMessageFor(model => model.RepeatPassword)
+                                </div>
+                                <hr />
+                                <div class="form-group mb-0 text-center">
+                                    <button class="btn btn-primary btn-block" value="Submit" type="submit" href="@Url.Action("Index", "Login")"> Sign Up </button>
+                                </div>
+                            </form>
+
+
+                            <div class="text-center">
+                                <h5 class="mt-3 text-muted">Sign up using</h5>
+                                <ul class="social-list list-inline mt-3 mb-0">
+                                    <li class="list-inline-item">
+                                        <a href="javascript: void(0);" class="social-list-item border-primary text-primary">
+                                            <i class="mdi mdi-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="javascript: void(0);" class="social-list-item border-danger text-danger">
+                                            <i class="mdi mdi-google"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="javascript: void(0);" class="social-list-item border-info text-info">
+                                            <i class="mdi mdi-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary">
+                                            <i class="mdi mdi-github-circle"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-12 text-center">
+                                    <p class="text-muted">Already have account? <a href="@Url.Action("Index", "Login")" class="text-muted font-weight-medium ml-1">Sign In</a></p>
+                                </div> <!-- end col -->
+                            </div>
+
+                        </div> <!-- end card-body -->
+                    </div>
+                    <!-- end card -->
+
+                    <!-- end row -->
+                </div> <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end page -->
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var form = $('RegisterForm')
+                .removeData("validator")
+                .removeData("unobtrusiveValidation");
+
+            $.validator.unobtrusive.parse(form);
+        });
+    </script>
+}

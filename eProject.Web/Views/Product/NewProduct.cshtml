@@ -1,0 +1,95 @@
+﻿@model eProject.Web.Models.UserData
+@using System.Web.Optimization
+@{
+    Layout = "~/Views/Shared/_Blank_Layout.cshtml";
+    ViewBag.Title = "Add new products!";
+}
+<div class="wrapper">
+    @using (Html.BeginForm("NewProduct", "Product", FormMethod.Post, new { id = "ProductForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="d-flex justify-content-center">
+            <div class="card-box ribbon-box">
+                <h4 class="header-title">Add a new item to your site!</h4>
+
+                <form action="/" id="RegisterForm" novalidate>
+                    @Html.ValidationSummary(true)
+                    <div class="form-group mb-0 text-center">
+                        <label class="succes">@ViewBag.SuccessMessage</label>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.Name, new
+                        {
+                            @class = "form-control",
+                            id = "item",
+                            placeholder = "Enter item name",
+                            title = "Item name"
+                        })
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.Description, new
+                        {
+                            @class = "form-control",
+                            id = "description",
+                            placeholder = "Enter your description",
+                            title = "Description"
+                        })
+                        @Html.ValidationMessageFor(model => model.Description)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Price, new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.Price, new
+                        {
+                            @class = "form-control",
+                            placeholder = "Enter item price",
+                            title = "Price",
+                            id = "price"
+                        })
+                        @Html.ValidationMessageFor(model => model.Price)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.imageURL, new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.imageURL, new
+                        {
+                            @class = "form-control",
+                            placeholder = "Enter your image url.",
+                            title = "Prodcut image.",
+                            id = "image"
+                        })
+                        @Html.ValidationMessageFor(model => model.Price)
+                    </div>
+
+                    <div class="form-group text-right mb-0">
+                        <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+                            Submit
+                        </button>
+                        <button type="reset" class="btn btn-secondary waves-effect waves-light">
+                            Cancel
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var form = $('ProductForm')
+                .removeData("validator")
+                .removeData("unobtrusiveValidation");
+
+            $.validator.unobtrusive.parse(form);
+        });
+    </script>
+}
